@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --amber: #ff6b35;
+  --amber-glow: #ff8c5a;
+  --green: #00ff88;
+  --cream: #e8dcc4;
+  --dark: #0a0a0f;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'IBM Plex Mono', monospace;
+  background-color: var(--dark);
+  color: var(--cream);
+}
+
+.font-display {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.font-mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Scanline effect */
+.scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 2px,
+    rgba(0, 0, 0, 0.15) 4px
+  );
+}
+
+/* Noise texture */
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* CRT glow effect for text */
+.crt-glow {
+  text-shadow:
+    0 0 5px var(--amber),
+    0 0 10px var(--amber),
+    0 0 20px var(--amber-glow);
+}
+
+/* Green indicator glow */
+.green-glow {
+  box-shadow:
+    0 0 5px var(--green),
+    0 0 10px var(--green),
+    0 0 20px var(--green);
+}
+
+/* Card styling */
+.monitor-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 107, 53, 0.05) 0%,
+    rgba(10, 10, 15, 0.95) 50%,
+    rgba(255, 107, 53, 0.03) 100%
+  );
+  border: 1px solid rgba(255, 107, 53, 0.2);
+  box-shadow:
+    inset 0 0 30px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(255, 107, 53, 0.05);
+}
+
+/* Smooth clock hand animation */
+@keyframes smoothSecond {
+  from { transform: rotate(var(--start-deg)); }
+  to { transform: rotate(calc(var(--start-deg) + 360deg)); }
+}
+
+/* Pulse animation for status indicators */
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.status-pulse {
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+/* Flicker effect */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.8; }
+  94% { opacity: 1; }
+  95% { opacity: 0.9; }
+  96% { opacity: 1; }
+}
+
+.flicker {
+  animation: flicker 4s linear infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 107, 53, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 53, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 107, 53, 0.5);
+}
+
+/* Stagger animation for list items */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
